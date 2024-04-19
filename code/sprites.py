@@ -6,7 +6,9 @@ from my_vector import *
 class Sprite(pygame.sprite.Sprite):
     def __init__(self, x:int, y:int, size:int, speed:int, color: str) -> None:
         super().__init__()
-        self.current_location = 0
+        self.map_location_x = 0
+        self.map_location_y = 0
+        self.current_location = f"tilemaps/map_location{self.map_location_x}{self.map_location_y}.csv"
         self.color = color
         self.size = size
         self.speed = speed
@@ -38,6 +40,22 @@ class Sprite(pygame.sprite.Sprite):
             if self.heading_y < 0:
                 self.rect.y = self.collide.rect.bottom 
 
+    def check_location(self):
+        if self.rect.x == tile_size * tile_num_x:
+            self.map_location_x += 1
+            self.current_location = f"tilemaps/map_location{self.map_location_x}{self.map_location_y}.csv"
+        if self.rect.x == 0:
+            self.map_location_x -= 1
+            self.current_location = f"tilemaps/map_location{self.map_location_x}{self.map_location_y}.csv"
+        if self.rect.center[1] >= tile_size * tile_num_y:
+            self.map_location_y -= 1
+            self.current_location = f"tilemaps/map_location{self.map_location_x}{self.map_location_y}.csv"
+            self.rect.y -= tile_size * tile_num_y
+        if self.rect.center[1] <= 0:
+            self.map_location_y += 1
+            self.current_location = f"tilemaps/map_location{self.map_location_x}{self.map_location_y}.csv"
+            self.rect.y += tile_size * tile_num_y
+
     def update(self):
         if self.heading_x == self.heading_y == 0:
             return
@@ -47,6 +65,7 @@ class Sprite(pygame.sprite.Sprite):
         self.check_collision_x()
         self.rect.y += self.heading_y * self.distance
         self.check_collision_y()
+        self.check_location()
         self.heading_x = self.heading_y = 0
 
 
@@ -60,3 +79,5 @@ class Wall(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=(x, y))
         walls.add(self)
         all_sprites.add(self)
+
+

@@ -11,9 +11,8 @@ import sprites
 # initialize variables
 pygame.init()
 time_passed(clock.tick(30))
-tilemap.tilemap(file_location="tilemaps/map_location_0.csv")
+tilemap.tilemap()
 
-player1 = sprites.Sprite(x=100, y=200, size=tile_size, speed=250, color='red') 
 
 def draw_screen():
     screen.fill(bar_color)
@@ -38,13 +37,13 @@ while True:
 
     keys = pygame.key.get_pressed()
     if keys[K_RIGHT]:
-        player1.heading_x += 1
+        tilemap.player1.heading_x += 1
     if keys[K_LEFT]:
-       player1.heading_x -= 1
+       tilemap.player1.heading_x -= 1
     if keys[K_UP]:
-        player1.heading_y -= 1
+        tilemap.player1.heading_y -= 1
     if keys[K_DOWN]:
-        player1.heading_y += 1
+        tilemap.player1.heading_y += 1
 
     draw_screen()
     time_passed(clock.tick(30))

@@ -1,4 +1,5 @@
 import pygame
+from pygame.sprite import Sprite
 
 #1.6:1 aspect ratio
 GAME_WIDTH = 720
@@ -6,6 +7,7 @@ GAME_HEIGHT = 450
 
 background_color = 'white'
 bar_color = 'grey'
+player_speed = 250
 
 tile_num_x = 40
 tile_num_y = 25
