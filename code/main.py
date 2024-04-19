@@ -4,23 +4,25 @@ from sys import exit
 
 # importing my files
 from my_vector import *
-from sprites import *
 from globals import *
+import tilemap
+import sprites
 
-
+# initialize variables
 pygame.init()
+time_passed(clock.tick(30))
+tilemap.tilemap(file_location="tilemaps/map_location_0.csv")
 
-background_color = 'white'
-
-player = sprite(x=100, y=200, size=200, speed=10) 
-
-sprites = pygame.sprite.Group()
-sprites.add(player)
+player1 = sprites.Sprite(x=100, y=200, size=tile_size, speed=250, color='red') 
 
 def draw_screen():
-    player.update_position() 
-    screen.fill(background_color)
-    sprites.draw(screen)
+    screen.fill(bar_color)
+    game_screen.fill(background_color)
+    all_sprites.update()
+    all_sprites.draw(game_screen)
+    players.update()
+    players.draw(game_screen)
+    screen.blit(game_screen, screen_center, None)
     pygame.display.update()
 
 # event handler
@@ -29,16 +31,20 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             exit()
-    keys = pygame.key.get_pressed()
+        if event.type == pygame.VIDEORESIZE:
+            center_screen_x = event.w / 2
+            center_screen_y = event.h / 2
+            screen_center = (center_screen_x - game_screen.get_width()/2, center_screen_y - game_screen.get_height()/2)
 
+    keys = pygame.key.get_pressed()
     if keys[K_RIGHT]:
-        player.heading_x += 1
+        player1.heading_x += 1
     if keys[K_LEFT]:
-        player.heading_x -= 1
+       player1.heading_x -= 1
     if keys[K_UP]:
-        player.heading_y -= 1
+        player1.heading_y -= 1
     if keys[K_DOWN]:
-        player.heading_y += 1
+        player1.heading_y += 1
 
     draw_screen()
     time_passed(clock.tick(30))
