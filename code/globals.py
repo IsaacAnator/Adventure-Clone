@@ -1,5 +1,4 @@
 import pygame
-from pygame.sprite import Sprite
 
 #1.6:1 aspect ratio
 GAME_WIDTH = 720

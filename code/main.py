@@ -6,7 +6,6 @@ from sys import exit
 from my_vector import *
 from globals import *
 import tilemap
-import sprites
 
 # initialize variables
 pygame.init()
@@ -34,16 +33,6 @@ while True:
             center_screen_x = event.w / 2
             center_screen_y = event.h / 2
             screen_center = (center_screen_x - game_screen.get_width()/2, center_screen_y - game_screen.get_height()/2)
-
-    keys = pygame.key.get_pressed()
-    if keys[K_RIGHT]:
-        tilemap.player1.heading_x += 1
-    if keys[K_LEFT]:
-       tilemap.player1.heading_x -= 1
-    if keys[K_UP]:
-        tilemap.player1.heading_y -= 1
-    if keys[K_DOWN]:
-        tilemap.player1.heading_y += 1
 
     draw_screen()
     time_passed(clock.tick(30))
