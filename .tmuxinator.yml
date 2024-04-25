@@ -9,6 +9,7 @@ windows:
   - tilemap: vim tilemap.py
   - globals: vim globals.py
   - tilemap_edit: cd tilemaps; vim .
+  - Terminal: 
 
 # Optional tmux socket
 # socket_name: foo
