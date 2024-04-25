@@ -12,14 +12,21 @@ pygame.init()
 time_passed(clock.tick(30))
 tilemap.tilemap()
 
+view = pygame.Surface(size=(200,200))
+view.fill('red')
+view.set_colorkey('red')
 
 def draw_screen():
     screen.fill(bar_color)
     game_screen.fill(background_color)
+    game_screen.set_clip((tilemap.player1.rect.centerx - 50, tilemap.player1.rect.centery - 50), (100,100))
     all_sprites.update()
     all_sprites.draw(game_screen)
     players.update()
     players.draw(game_screen)
+    
+    game_screen.blit(view,(tilemap.player1.rect.centerx - 50, tilemap.player1.rect.centery - 50))
+
     screen.blit(game_screen, screen_center, None)
     pygame.display.update()
 

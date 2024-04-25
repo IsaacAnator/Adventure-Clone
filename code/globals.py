@@ -4,7 +4,7 @@ import pygame
 GAME_WIDTH = 720
 GAME_HEIGHT = 450
 
-background_color = 'white'
+background_color = 'black'
 bar_color = 'grey'
 player_speed = 250
 

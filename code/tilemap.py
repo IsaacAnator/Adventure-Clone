@@ -29,7 +29,7 @@ class tilemap(pygame.sprite.Sprite):
                 elif value == "w":
                     self.current_tile = int(j*tile_size)
                     self.current_row = int(i*tile_size)
-                    Wall(x=self.current_tile, y=self.current_row, size=tile_size, color='black')
+                    Wall(x=self.current_tile, y=self.current_row, size=tile_size, color='white')
                 # only spawn player if he is starting the game
                 elif value == "p" and self.moved == False:
                     self.current_tile = int(j*tile_size)
