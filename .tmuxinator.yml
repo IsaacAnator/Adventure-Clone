@@ -4,10 +4,7 @@ name: adventure
 root: ~/games/adventure/code/
 
 windows:
-  - main: vim main.py
-  - sprites: vim sprites.py
-  - tilemap: vim tilemap.py
-  - globals: vim globals.py
+  - main: vim -p main.py sprites.py tilemap.py globals.py
   - tilemap_edit: cd tilemaps; vim .
   - Terminal: 
 
